@@ -1,19 +1,27 @@
 package com.iniciandoaviddadev.omdb.presentation.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
+import com.iniciandoaviddadev.omdb.databinding.FragmentSecondBinding
 import com.iniciandoaviddadev.omdb.presentation.viewmodel.MovieDescriptionViewModel
-import com.iniciandoaviddadev.omdb.databinding.MovieDescriptionActivityBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MovieDescriptionActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        supportActionBar?.hide()
-        val binding = MovieDescriptionActivityBinding.inflate(layoutInflater)
-        val imdb = intent.getStringExtra("imdbID")
-        val title = intent.getStringExtra("movie_title")
+class SecondFragment : Fragment() {
+    private val args : SecondFragmentArgs by navArgs()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val binding = FragmentSecondBinding.inflate(inflater, container, false)
+        val imdb = args.imdb
+        val title = args.title
         val viewModel: MovieDescriptionViewModel by viewModel()
         val plotSize = "full"
 
@@ -21,19 +29,19 @@ class MovieDescriptionActivity : AppCompatActivity() {
             viewModel.plotPasser(imdb, plotSize)
         }
 
-        viewModel.loading.observe(this) {
+        viewModel.loading.observe(viewLifecycleOwner) {
             binding.progressLoading.isVisible = it
             binding.textMovieTitle.isVisible = !it
             binding.textMovieDescription.isVisible = !it
         }
 
-        viewModel.plot.observe(this) {
+        viewModel.plot.observe(viewLifecycleOwner) {
             it?.Plot?.let {
                 binding.textMovieDescription.text = it
                 binding.textMovieTitle.text = title
             }
         }
-        setContentView(binding.root)
+
+        return binding.root
     }
 }
-

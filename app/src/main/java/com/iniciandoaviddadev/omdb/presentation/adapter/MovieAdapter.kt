@@ -1,18 +1,17 @@
 package com.iniciandoaviddadev.omdb.presentation.adapter
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.iniciandoaviddadev.omdb.MovieResponse
 import com.iniciandoaviddadev.omdb.R
 import com.iniciandoaviddadev.omdb.databinding.MovieCardviewBinding
-import com.iniciandoaviddadev.omdb.presentation.activity.MovieDescriptionActivity
 import com.squareup.picasso.Picasso
 
-class MovieAdapter(private val movieList: List<MovieResponse>, val context: Context) :
-    RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter(
+    private val movieList: List<MovieResponse>,
+    private val navigateToDetail: (String, String) -> Unit
+) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     inner class MovieViewHolder(private val binding: MovieCardviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -27,18 +26,15 @@ class MovieAdapter(private val movieList: List<MovieResponse>, val context: Cont
                 .error(R.drawable.ic_launcher_foreground)
                 .into(binding.imagePoster)
 
-            val intent = Intent(context, MovieDescriptionActivity::class.java)
-
             binding.cardPoster.setOnClickListener {
-                intent.putExtra("imdbID", item.imdbID.toString())
-                intent.putExtra("movie_title", item.Title.toString())
-                context.startActivity(intent)
+                navigateToDetail(item.imdbID.toString(), item.Title.toString())
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
+        val inflater =
+            LayoutInflater.from(parent.context)
         val binding = MovieCardviewBinding.inflate(inflater)
         return MovieViewHolder(binding)
     }

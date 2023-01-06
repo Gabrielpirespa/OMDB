@@ -10,4 +10,5 @@
     <color name="back_blue">#6CDDD2</color>
     <color name="background_lighter">#B2F4EE</color>
     <color name="text_title">#016154</color>
+    <color name="movie_card_view_blue_background">#9DEDF4</color>
 </resources>
