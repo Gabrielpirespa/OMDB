@@ -6,5 +6,5 @@ import retrofit2.http.Query
 
 interface PlotService {
     @GET("/")
-    suspend fun callPlot (@Query ("i") imdb: String, @Query("plot") plotSize: String): MoviePlot?
+    suspend fun callPlot (@Query ("i") imdb: String): MoviePlot?
 }

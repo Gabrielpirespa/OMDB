@@ -4,13 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.iniciandoaviddadev.omdb.MovieResponse
-import com.iniciandoaviddadev.omdb.R
 import com.iniciandoaviddadev.omdb.databinding.MovieCardviewBinding
 import com.squareup.picasso.Picasso
 
 class MovieAdapter(
     private val movieList: List<MovieResponse>,
-    private val navigateToDetail: (String, String) -> Unit
+    private val navigateToDetail: (String) -> Unit
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     inner class MovieViewHolder(private val binding: MovieCardviewBinding) :
@@ -23,11 +22,10 @@ class MovieAdapter(
                 .load(item.Poster)
                 .resize(300, 435)
                 .centerCrop()
-                .error(R.drawable.ic_launcher_foreground)
                 .into(binding.imagePoster)
 
             binding.cardPoster.setOnClickListener {
-                navigateToDetail(item.imdbID.toString(), item.Title.toString())
+                navigateToDetail(item.imdbID.toString())
             }
         }
     }

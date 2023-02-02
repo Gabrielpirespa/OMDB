@@ -12,6 +12,7 @@ class MovieInterceptor : Interceptor {
 
         val url = originalHttpUrl.newBuilder()
             .addQueryParameter("apikey", "503f6071")
+            .addQueryParameter("plot", "full")
             .build()
 
         val requestBuilder: Request.Builder = original.newBuilder()

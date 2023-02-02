@@ -55,12 +55,11 @@ class FirstFragment: Fragment(R.layout.fragment_first) {
                 )
                 binding.recyclerPoster.adapter = adapter
             }
-
         }
         return binding.root
     }
-    private fun navigateToDetail(imdbID : String, Title: String) {
-        val action = FirstFragmentDirections.fromFirstFragmentToSecondFragment(imdbID, Title)
+    private fun navigateToDetail(imdbID : String) {
+        val action = FirstFragmentDirections.fromFirstFragmentToSecondFragment(imdbID)
         findNavController().navigate(action)
     }
 }
