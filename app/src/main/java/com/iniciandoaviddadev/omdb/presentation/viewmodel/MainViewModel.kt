@@ -5,8 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.iniciandoaviddadev.omdb.MovieList
 import com.iniciandoaviddadev.omdb.domain.usecase.MainUseCase
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val mainUseCase: MainUseCase) : ViewModel() {
@@ -16,19 +14,11 @@ class MainViewModel(private val mainUseCase: MainUseCase) : ViewModel() {
 
     fun moviePasser(search: String) {
         viewModelScope.launch {
-            mainUseCase.movieFilter(search)
-                ?.onStart {
-                    loading.value = true
-                    vision.value = false
-                }
-                ?.onCompletion {
-                    loading.value = false
-                }
-                ?.collect {
-                    movie.value = it
-                    vision.value = true
-                }
+            loading.value = true
+            vision.value = false
+            movie.value = mainUseCase.movieFilter(search)
+            loading.value = false
+            vision.value = true
         }
     }
-
 }

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shape_background"
-    android:paddingTop="0dp"
+    android:paddingTop="8dp"
     android:paddingStart="20dp"
     android:paddingEnd="20dp"
     tools:context=".presentation.activity.MainActivity">
