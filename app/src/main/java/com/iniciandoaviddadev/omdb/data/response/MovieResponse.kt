@@ -1,6 +1,5 @@
 package com.iniciandoaviddadev.omdb
 
-
 data class MovieList(
     val Search: List<MovieResponse>? = null
 )

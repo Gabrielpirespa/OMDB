@@ -11,4 +11,5 @@
     <color name="background_lighter">#B2F4EE</color>
     <color name="text_title">#016154</color>
     <color name="movie_card_view_blue_background">#9DEDF4</color>
+    <color name="shape_back_strong_blue">#13092B</color>
 </resources>

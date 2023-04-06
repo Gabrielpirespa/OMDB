@@ -15,6 +15,7 @@
             <stringArg name="classpath">
               <args>
                 <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar</arg>
+                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_app_classes_jar/debug/classes.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/078d46c5d2f6061833b59b9d0980361b/transformed/viewbinding-7.3.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/2ddf5832baaeeb10dba67d722578aa10/transformed/koin-androidx-viewmodel-2.2.3-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/c1d987e2354a51d5d056b243995e439c/transformed/koin-androidx-scope-2.2.3-api.jar</arg>

@@ -20,7 +20,7 @@ class MovieAdapter(
 
             Picasso.get()
                 .load(item.Poster)
-                .resize(300, 435)
+                .resize(308, 410)
                 .centerCrop()
                 .into(binding.imagePoster)
 
